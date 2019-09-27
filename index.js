@@ -66,7 +66,9 @@ function Syslog (skyfall, options = {}) {
   };
 
   this.start = (callback) => {
-    callback = skyfall.utils.callback(callback);
+    if (!callback) {
+      callback = () => {};
+    }
 
     if (this.server) {
       const listenOptions = {
