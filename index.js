@@ -2,7 +2,7 @@
 
 const syslog = require('simple-syslog-server') ;
 
-function Syslog (skyfall, options) {
+function Syslog (skyfall, options = {}) {
   this.type = 'udp';
   this.host = '0.0.0.0';
   this.port = 'auto';
@@ -31,7 +31,7 @@ function Syslog (skyfall, options) {
     this.options = {};
 
     if (this.type === 'udp') {
-      this.options.type = 'udp';
+      this.options.type = 'udp4';
       if (this.port === 'auto') {
         this.port = 514;
       }
@@ -66,6 +66,8 @@ function Syslog (skyfall, options) {
   };
 
   this.start = (callback) => {
+    callback = skyfall.utils.callback(callback);
+
     if (this.server) {
       const listenOptions = {
         host: this.host,
@@ -91,14 +93,13 @@ function Syslog (skyfall, options) {
           return callback(error);
         });
     }
+
     const error = new Error('syslog not configured');
     this.onError(error);
     return callback(error);
   };
 
-  if (Object.keys(options).length) {
-    this.configure(options);
-  }
+  this.configure(options);
 }
 
 module.exports = {
