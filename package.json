@@ -1,5 +1,5 @@
 {
-  "name": "@mdbarr/skyfall-plugin-syslog-server",
+  "name": "@hyperingenuity/skyfall-plugin-syslog-server",
   "version": "0.1.2",
   "description": "Skyfall Plugin to act as a Syslogd Server",
   "main": "index.js",
