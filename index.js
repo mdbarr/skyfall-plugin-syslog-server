@@ -12,14 +12,14 @@ function Syslog (skyfall, options = {}) {
 
     skyfall.events.emit({
       type,
-      data: message
+      data: message,
     });
   };
 
   this.onError = (error) => {
     skyfall.events.emit({
       type: 'syslog:server:error',
-      data: error
+      data: error,
     });
   };
 
@@ -73,19 +73,19 @@ function Syslog (skyfall, options = {}) {
     if (this.server) {
       const listenOptions = {
         host: this.host,
-        port: this.port
+        port: this.port,
       };
 
       skyfall.events.emit({
         type: 'syslog:server:starting',
-        data: listenOptions
+        data: listenOptions,
       });
 
       return this.server.listen(listenOptions).
         then(() => {
           skyfall.events.emit({
             type: 'syslog:server:started',
-            data: listenOptions
+            data: listenOptions,
           });
 
           return callback(null);
@@ -108,5 +108,5 @@ module.exports = {
   name: 'syslog',
   install: (skyfall, options) => {
     skyfall.syslog = new Syslog(skyfall, options);
-  }
+  },
 };
