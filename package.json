@@ -11,7 +11,7 @@
     "simple-syslog-server": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.6.0"
+    "eslint": "^7.8.1"
   },
   "scripts": {
     "lint": "eslint index.js"
